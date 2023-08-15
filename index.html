@@ -341,24 +341,55 @@
                 </div>
             </div>
 
-            <form action="">
+            <div class="w-full px-4 hidden" id="alert">
+                <div
+                    class="w-full lg:w-2/3 lg:mx-auto mb-5 bg-slate-200 px-4 py-4 rounded-lg flex justify-between items-center border border-primary shadow-lg">
+                    <h4 class="font-semibold text-lg text-primary">Thanks! Your message was succesfully sent!</h4>
+                    <button id="exitAlert" name="exitAlert type="button" class="right-4">
+                        <!-- Made the X for the alert with the hamburger line, the second line color is the same with the background so the X sign has a good shape. In other words, that is my own thing because I still don't know how to make the X sign on my own -->
+                        <span class="hamburger-line origin-top-left rotate-45"></span>
+                        <span class="w-[2px] h-[2px] my-2 block bg-slate-200 rounded-full"></span>
+                        <span class="hamburger-line origin-bottom-left -rotate-45"></span>
+                    </button>
+                </div>
+
+            </div>
+            <form action="" name="submit-to-google-sheet">
                 <div class="w-full lg:w-2/3 lg:mx-auto">
                     <div class="w-full px-4 mb-8">
                         <label for="name" class="text-base font-bold text-primary">Name</label>
-                        <input type="text" id="name" class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary">
+                        <input type="text" id="name" name="nama"
+                            class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary">
                     </div>
                     <div class="w-full px-4 mb-8">
                         <label for="email" class="text-base font-bold text-primary">E-mail</label>
-                        <input type="text" id="email" class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary">
+                        <input type="text" id="email" name="email"
+                            class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary">
                     </div>
                     <div class="w-full px-4 mb-8">
                         <label for="message" class="text-base font-bold text-primary">Message</label>
-                        <textarea type="text" id="message" class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32"></textarea>
+                        <textarea type="text" id="message" name="message"
+                            class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32"></textarea>
                     </div>
-                <div class="w-full px-4">
-                    <button class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">SEND</button>
+                    <div class="w-full px-4">
+                        <button type="submit" id="btnSend"
+                            class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500">SEND</button>
+                        <button disabled type="button" id="btnSending"
+                            class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500 hidden">
+                            <svg aria-hidden="true"
+                                class="inline w-6 h-6 mr-2 text-gray-200 animate-spin dark:text-gray-200 fill-gray-600"
+                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                    fill="currentFill" />
+                            </svg>
+                            SENDING...
+                        </button>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
     </section>
@@ -460,14 +491,27 @@
                         </svg>
                     </a>
                 </div>
-                <p class="font-medium text-xs text-slate-500 text-center">Made by 
-                    <a href="https://instagram.com/rakhabas" target="_blank" class="text-primary">Rakha Bima</a> ✌️, using <a href="https://tailwindcss.com" target="_blank" class="text-blue-500">Tailwind CSS 3</a>.</p>
+                <p class="font-medium text-xs text-slate-500 text-center">Made by
+                    <a href="https://instagram.com/rakhabas" target="_blank" class="text-primary">Rakha Bima</a> ✌️,
+                    using <a href="https://tailwindcss.com" target="_blank" class="text-blue-500">Tailwind CSS 3</a>.
+                </p>
             </div>
         </div>
     </footer>
     <!-- footer end -->
 
     <script src="dist/js/script.js"></script>
+    <!-- <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzlkQQcc_HoSgPuGS3CFlubs1E5GF4Q2Wm71arcnqTBRGNbxvaJs6q78avdwnFu-cKb/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script> -->
 </body>
 
 </html>

@@ -19,6 +19,10 @@ body{
 @apply w-[30px] h-[2px] my-2 block bg-dark rounded-full;
 }
 
+.warning-validation{
+@apply mt-2 text-sm text-warning;
+}
+
 .hamburger-active > span:nth-child(1){
     @apply rotate-45;
 }

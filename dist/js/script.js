@@ -24,8 +24,50 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbzlkQQcc_HoSgPuGS3CFl
 const form = document.forms['submit-to-google-sheet']
 const btnSend = document.querySelector("#btnSend")
 const btnSending = document.querySelector("#btnSending")
-const alert = document.querySelector("#alert")
-const exitAlert = document.querySelector("#exitAlert")
+
+// form validation
+const clearErrors = () => {
+    const errors = document.getElementsByClassName('when-error')
+    for (let item of errors) {
+        item.innerHTML = ""
+    }
+}
+
+const setError = (id, error) => {
+    elMessage = document.getElementById(id)
+    elMessage.getElementsByClassName('when-error')[0].innerHTML = error
+}
+
+const validateForm = () => {
+    console.log('lagi ngecek')
+    let valid = true
+    clearErrors()
+
+    // name form check
+    const nameForm = form.name.value
+    if (nameForm == '') {
+        setError('name', '*Please enter your name')
+        valid = false
+    }
+
+    // email form check
+    const emailForm = form.email.value
+    const emailExpression = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+    if (emailForm == "") {
+        setError('email', '*Please enter your email')
+        valid = false
+    }else if (!emailExpression.test(emailForm)) {
+        setError("email", "*Please enter a valid email")
+        valid = false
+    }
+    // message form check
+    const messageForm = form.message.value
+    if (messageForm == "") {
+        setError("message", "*Please enter your message")
+        valid = false
+    }
+    return valid
+}
 
 // function to change the button if sending
 const toggleButton = () => {
@@ -33,33 +75,30 @@ const toggleButton = () => {
     btnSending.classList.toggle("hidden")
 }
 
-// function to toggle alert
-const toggleAlert = () => {
-    alert.classList.toggle("hidden")
-}
-
-// function alert close
-exitAlert.addEventListener("click", () => {
-    toggleAlert()
-})
-
-// // submit with ctrl and enter
-// document.body.addEventListener('keydown', (event) => {
-//     if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
-//         event.target.form?.submit();
-//     }
-// });
+// submit with ctrl and enter
+document.body.addEventListener('keydown', (event) => {
+    if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+        // event.target.form?.submit();
+        console.log('ctrl enter kepencet')
+        formSubmit(event)
+    }
+});
 
 // when the form is sending
-form.addEventListener('submit', e => {
-    toggleButton()
+const formSubmit = (e) => {
     e.preventDefault()
+    if (!validateForm()) {
+        return
+    }
+    toggleButton()
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
             toggleButton()
-            toggleAlert()
             form.reset()
             console.log('Success!', response)
         })
         .catch(error => console.error('Error!', error.message))
+}
+form.addEventListener('submit', e => {
+    formSubmit(e)
 })

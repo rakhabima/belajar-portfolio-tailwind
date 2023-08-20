@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="dist/output.css" rel="stylesheet">
     <title>Belajar Tailwind Css</title>
+    <link rel="icon" href="dist/img/icon/favicon.ico">
 </head>
 
 <body>
@@ -79,8 +80,8 @@
                 <div class="w-full px-4 self-center lg:w-1/2">
                     <h1 class="text-base font-semibold text-primary md:text-lg">Hai adik-adik, Aku <span
                             class="block font-bold text-4xl text-dark mt-1">Rakha Bima</span></h1>
-                    <h2 class="font-medium text-secondary text-lg mb-5 lg:text-2xl">Anak Bunda &
-                        <span class="text-dark"> Anak Ayah</span>
+                    <h2 class="font-medium text-secondary text-lg mb-5 lg:text-2xl">Pengen Freelance Web &
+                        <span class="text-dark"> Content Creator</span>
                     </h2>
                     <p class="font-medium text-secondary mb-10 leading-relaxed">Halo semuanya gua lagi belajar tailwind
                         css dan gua juga content creator<span class="text-dark"> @bahasbasket</span>. di follow ya
@@ -356,20 +357,23 @@
             </div>
             <form action="" name="submit-to-google-sheet">
                 <div class="w-full lg:w-2/3 lg:mx-auto">
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" id="name">
                         <label for="name" class="text-base font-bold text-primary">Name</label>
-                        <input type="text" id="name" name="nama"
+                        <input type="text" name="name" novalidate
                             class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary">
+                            <p id='emptyName' class="warning-validation when-error"></p>
                     </div>
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" id="email">
                         <label for="email" class="text-base font-bold text-primary">E-mail</label>
-                        <input type="text" id="email" name="email"
+                        <input type="text" name="email" novalidate
                             class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary">
+                            <p id="emptyEmail" class="warning-validation when-error"></p>
                     </div>
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" id="message">
                         <label for="message" class="text-base font-bold text-primary">Message</label>
-                        <textarea type="text" id="message" name="message"
+                        <textarea type="text" name="message" novalidate
                             class="w-full bg-slate-200 p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32"></textarea>
+                            <p id="emptyMessage" class="warning-validation when-error"></p>
                     </div>
                     <div class="w-full px-4">
                         <button type="submit" id="btnSend"
@@ -400,7 +404,7 @@
         <div class="container">
             <div class="flex flex-wrap">
                 <div class="w-full px-4 mb-12 text-slate-300 font-medium md:w-1/3">
-                    <h2 class="font-bold text-4xl text-white mb-5">WPU</h2>
+                    <h2 class="font-bold text-4xl text-white mb-5">RAKHABAS</h2>
                     <h3 class="font-bold text-2xl mb-2">Contact Us</h3>
                     <p>rakhabas59@gmail.com</p>
                     <p>Mulholland Drive</p>
@@ -501,17 +505,6 @@
     <!-- footer end -->
 
     <script src="dist/js/script.js"></script>
-    <!-- <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzlkQQcc_HoSgPuGS3CFlubs1E5GF4Q2Wm71arcnqTBRGNbxvaJs6q78avdwnFu-cKb/exec'
-        const form = document.forms['submit-to-google-sheet']
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => console.log('Success!', response))
-                .catch(error => console.error('Error!', error.message))
-        })
-    </script> -->
 </body>
 
 </html>

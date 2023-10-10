@@ -24,6 +24,8 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbzlkQQcc_HoSgPuGS3CFl
 const form = document.forms['submit-to-google-sheet']
 const btnSend = document.querySelector("#btnSend")
 const btnSending = document.querySelector("#btnSending")
+const alert = document.querySelector("#alert")
+const exitAlert = document.querySelector("#exitAlert")
 
 // form validation
 const clearErrors = () => {
@@ -73,6 +75,7 @@ const validateForm = () => {
 const toggleButton = () => {
     btnSend.classList.toggle("hidden")
     btnSending.classList.toggle("hidden")
+    // alert.classList.toggle("hidden")
 }
 
 // submit with ctrl and enter
@@ -84,6 +87,8 @@ document.body.addEventListener('keydown', (event) => {
     }
 });
 
+
+
 // when the form is sending
 const formSubmit = (e) => {
     e.preventDefault()
@@ -94,6 +99,7 @@ const formSubmit = (e) => {
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
             toggleButton()
+            alert.classList.toggle("hidden")
             form.reset()
             console.log('Success!', response)
         })
@@ -101,4 +107,8 @@ const formSubmit = (e) => {
 }
 form.addEventListener('submit', e => {
     formSubmit(e)
+})
+
+exitAlert.addEventListener('click', () => {
+    alert.classList.toggle("hidden")
 })
